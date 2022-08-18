@@ -690,3 +690,333 @@ document.getElementById("submitButton8").onclick = function (){
     alert("Too large!");
   }
 }
+
+
+
+//v31- JavaScript temperature conversion program------------------------------------------
+
+/*
+
+document.getElementById("submitButton").onclick = function(){
+
+    let temp;
+
+    if(document.getElementById("cButton").checked){
+        temp = document.getElementById("textBox").value;
+        temp = Number(temp);
+        temp = toCelsius(temp);
+        document.getElementById("tempLabel").innerHTML = temp + "°C";
+    }
+    else if(document.getElementById("fButton").checked){
+        temp = document.getElementById("textBox").value;
+        temp = Number(temp);
+        temp = toFahrenheit(temp);
+        document.getElementById("tempLabel").innerHTML = temp + "°F";
+    }
+    else{
+        document.getElementById("tempLabel").innerHTML = "Select a unit";
+    }
+}
+
+function toCelsius(temp){
+    return (temp - 32) * (5/9);
+}
+
+function toFahrenheit(temp){
+    return temp * 9 / 5 + 32;
+}
+
+*/
+
+
+//v32- JavaScript arrays------------------------------------------
+
+// array = think of it as a variable 
+//              that can store multiple values
+
+let fruits = ["apple", "orange", "banana"];
+
+//fruits[2] = "coconut";
+
+//fruits.push("lemon");       //add an element
+//fruits.pop();               //removes last element
+//fruits.unshift("mango");    //add element to beginning
+//fruits.shift();             //removes element from beginning
+
+//let length = fruits.length;
+//let index = fruits.indexOf("kiwi");
+
+console.log(fruits);
+
+
+//v33- JavaScript loop through an array------------------------------------------
+
+let prices = [5, 10, 15, 20, 25];
+
+/*
+for(let i = 0; i < prices.length; i+=1){
+    console.log(prices[i]);
+}
+*/
+
+for(let price of prices){
+    console.log(price);
+}
+
+
+//v34- JavaScript sort an array of strings------------------------------------------
+
+let fruits2 = ["banana", "apple", "orange", "mango"];
+
+fruits2 = fruits2.sort();
+//fruits2 = fruits2.sort().reverse();
+
+for(let fruit of fruits2){
+    console.log(fruit);
+}
+
+
+//v35- JavaScript 2D arrays------------------------------------------
+
+// 2D array = An array of arrays
+
+let fruits3 =           ["apples", "oranges", "bananas"];
+let vegetables = ["carrots", "onions", "potatoes"];
+let meats =         ["eggs", "chicken", "fish"];
+
+let groceryList = [fruits3, vegetables, meats];
+
+groceryList[2][2] = "steak";
+
+for(let list of groceryList){
+    for(let food of list){
+        console.log(food);
+    }
+}
+
+
+//v36- JavaScript spread operator------------------------------------------
+
+// spread operator = allows an iterable such as an 
+// ...                             array or string to be expanded 
+//                                 in places where zero or more 
+//                                 arguments are expected
+//                                (unpacks the elements)
+
+let numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let maximum2 = Math.max(...numbers1);
+console.log(maximum2);
+
+/*
+let class1 = ["Spongebob", "Patrick", "Sandy"];
+let class2 = ["Squidward", "Mr.Krabs", "Plankton"];
+class1.push(...class2);
+console.log(...class1);
+*/
+
+
+//v37- JavaScript rest parameters------------------------------------------
+
+// rest parameters = represents an indefinite number
+// ...                             of parameters
+//                                (packs arguments into an array)
+
+let a1 = 1;
+let b1 = 2;
+let c1 = 3;
+let d1 = 4;
+let e1 = 5;
+
+console.log(sum(a1, b1, c1, d1, e1));
+
+function sum(...numbers2){
+    let total = 0;
+    for(let number of numbers2){
+        total += number
+    }
+    return total
+}
+
+
+//v38- JavaScript callbacks------------------------------------------
+
+// callback = a function passed as an argument
+//                    to another function.
+ 
+//    Ensures that a function is not going
+//    to run before a task is completed.
+//    Helps us develop asynchronous code.
+//    (When one function has to wait for another function)
+//    that helps us avoid errors and potential problems
+//    Ex. Wait for a file to load
+
+sum(2, 3, displayConsole);
+
+function sum(x, y, callBack){
+  let result = x + y;
+  callBack(result);
+}
+
+function displayConsole(output){
+  console.log(output);
+}
+
+function displayDOM(output){
+  document.getElementById("myLabel").innerHTML = output;
+}
+
+
+//v39- JavaScript array.forEach()-----------------------------------------
+
+//array.forEach() = executes a provided callback function
+//                              once for each array element
+
+let students3 = ["spongebob", "patrick", "squidward"];
+students3.forEach(capitalize);
+students3.forEach(print);
+
+function capitalize(element, index, array){
+    array[index] = element[0].toUpperCase() + element.substring(1);
+}
+
+function print(element){
+    console.log(element);
+}
+
+
+//v40- JavaScript array.map()-----------------------------------------
+
+//array.map() = executes a provided callback function
+//                         once for each array element
+//                         AND creates a new array
+
+let numbers3 = [1, 2, 3, 4, 5];
+let squares = numbers3.map(square);
+let cubes = numbers3.map(cube);
+
+//numbers.forEach(print);
+//squares.forEach(print);
+//cubes.forEach(print);
+
+function square(element){
+    return Math.pow(element, 2);
+}
+function cube(element){
+    return Math.pow(element, 3);
+}
+function print(element){
+    console.log(element);
+}
+
+
+//v41- JavaScript array.filter()-----------------------------------------
+
+//array.filter() = creates a new array with all elements 
+//                         that pass the test provided by a function
+
+let ages = [18, 16, 21, 17, 19, 90];
+let adults = ages.filter(checkAge);
+
+adults.forEach(print);
+
+function checkAge(element){
+    return element >= 18;
+}
+function print(element){
+    console.log(element);
+}
+
+
+//v42- JavaScript array.reduce()-----------------------------------------
+
+//array.reduce() = reduces an array to a single value            
+
+let prices2 = [5, 10, 15, 20, 25, 30];
+let total2 = prices2.reduce(checkOut);
+
+console.log(`The total is: $${total2}`);
+
+function checkOut(total, element){
+    return total + element;
+}
+
+
+//v43- JavaScript sort an array of numbers-----------------------------------------
+
+let grades = [100, 50, 90, 60, 80, 70];
+
+grades = grades.sort(descendingSort);
+
+grades.forEach(print);
+
+function descendingSort(x, y){
+    return y - x;
+}
+function ascendingSort(x, y){
+    return x - y;
+}
+function print(element){
+    console.log(element);
+}
+
+
+//v44- JavaScript function expressions-----------------------------------------
+
+// function expression = function without a name (anonymous function)
+//                                        avoid polluting the global scope with names
+//                                        write it, then forget about it
+// ------------ Example 1 ------------
+const greeting = function(){
+    console.log("hello");
+}
+greeting();
+// ------------ Example 2 ------------
+let count2 = 0;
+
+document.getElementById("increaseButton").onclick = function(){
+    count2+=1;
+    document.getElementById("myLabel").innerHTML = count2;
+}
+document.getElementById("decreaseButton").onclick = function(){
+    count2-=1;
+    document.getElementById("myLabel").innerHTML = count2;
+}
+
+
+//v45- JavaScript arrow function expressions-----------------------------------------
+
+// arrow function expression = compact alternative to a traditional function expression
+//      =>
+
+const grades2 = [100, 50, 90, 60, 80, 70];
+
+grades2.sort((x, y) => y - x);
+grades2.forEach((element) => console.log(element));
+
+
+//v46- JavaScript shuffle an array-----------------------------------------
+
+let cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+
+shuffle(cards);
+
+console.log(cards);
+//console.log(cards[0]);
+//cards.forEach(card => console.log(card));
+
+function shuffle(array){
+  let currentIndex = array.length;
+
+  while(currentIndex != 0){
+    let randomIndex = Math.floor(Math.random() * array.length);
+    currentIndex-=1;
+
+    let temp = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temp;
+  }
+  
+  return array;
+}
+
+//v47- JavaScript -----------------------------------------
